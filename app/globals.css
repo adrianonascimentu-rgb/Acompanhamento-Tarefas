@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+
+  html.dark body {
+    background-color: #020617;
+    color: #f8fafc;
+  }
+
+  * {
+    border-color: rgba(226, 232, 240, 0.8);
+  }
+
+  .dark * {
+    border-color: rgba(30, 41, 59, 0.8);
+  }
+
+  /* Form controls and inputs in dark mode */
+  .dark input,
+  .dark select,
+  .dark textarea {
+    color-scheme: dark;
+  }
+
+  .dark option {
+    background-color: #0f172a;
+    color: #f8fafc;
+  }
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar,
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.25);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.45);
+  }
+
+  /* Mobile Improvements */
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button, a, .clickable {
+    touch-action: manipulation;
+  }
+
+  .safe-pb {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-pt {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Leaflet Fixes */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.leaflet-tile {
+  filter: var(--leaflet-tile-filter, none);
+}
+
+.dark .leaflet-tile {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.custom-leaflet-popup .leaflet-popup-content-wrapper {
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.custom-leaflet-popup .leaflet-popup-content {
+  margin: 0;
+  width: auto !important;
+}
+
+.custom-leaflet-popup .leaflet-popup-tip-container {
+  display: none;
+}
+
+/* Animação fade-in com vibração sutil para o balão flutuante informativo */
+@keyframes balao-fade-in-vibracao {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(0.92);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  42% {
+    transform: translateX(-5px) rotate(-1.2deg);
+  }
+  54% {
+    transform: translateX(5px) rotate(1.2deg);
+  }
+  66% {
+    transform: translateX(-3px) rotate(-0.8deg);
+  }
+  78% {
+    transform: translateX(3px) rotate(0.8deg);
+  }
+  88% {
+    transform: translateX(-1px) rotate(-0.3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1) rotate(0);
+  }
+}
+
+.balao-flutuante-informativo {
+  animation: balao-fade-in-vibracao 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

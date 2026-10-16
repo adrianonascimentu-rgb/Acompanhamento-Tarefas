@@ -1,0 +1,6 @@
+{
+  "name": "AgenteX - Gestão Inteligente",
+  "description": "Plataforma completa de gestão com CRM, Social Media, Entregas e Automação de Tarefas.",
+  "requestFramePermissions": ["notifications", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
